@@ -2,8 +2,8 @@ import React from 'react';
 
 function Alert(props) {
   return (
-    props.alert && (
-      <>
+    <div style={{ height: '50px' }}>
+      {props.alert && (
         <div>
           <div
             className={`alert alert-${props.alert.type} fade show`}
@@ -13,8 +13,8 @@ function Alert(props) {
             {props.alert.msg}
           </div>
         </div>
-      </>
-    )
+      )}
+    </div>
   );
 }
 
