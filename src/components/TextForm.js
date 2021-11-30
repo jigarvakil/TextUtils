@@ -21,21 +21,14 @@ export default function TextForm(props) {
   };
 
   const handleOnChange = event => {
-    // console.log("On change");
     setText(event.target.value);
   };
 
-  // Credits: A
   const handleCopy = () => {
-    console.log('I am copy');
-    var text = document.getElementById('myBox');
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges();
+    navigator.clipboard.writeText(text);
     props.showAlert('Copied to Clipboard!', 'success');
   };
 
-  // Credits: Coding Wala
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(' '));
@@ -43,8 +36,6 @@ export default function TextForm(props) {
   };
 
   const [text, setText] = useState('');
-  // text = "new text"; // Wrong way to change the state
-  // setText("new text"); // Correct way to change the state
   return (
     <>
       <div
@@ -108,7 +99,7 @@ export default function TextForm(props) {
         <h2>Your text summary</h2>
         <p>
           {
-            text.split(' ').filter(element => {
+            text.split(/\s+/).filter(element => {
               return element.length !== 0;
             }).length
           }{' '}
@@ -116,7 +107,7 @@ export default function TextForm(props) {
         </p>
         <p>
           {0.008 *
-            text.split(' ').filter(element => {
+            text.split(/\s+/).filter(element => {
               return element.length !== 0;
             }).length}{' '}
           Minutes read
